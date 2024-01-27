@@ -1,6 +1,6 @@
 import "./Skill.css"
 
-export default function Skill({name, experience = null, row})
+export default function Skill({name, experience = null, row, imageHeight = "32px"})
 {
   const contentStyle = {
     "grid-row": `${(row + 1)} / ${(row + 1)}`,
@@ -9,7 +9,7 @@ export default function Skill({name, experience = null, row})
   }
   const imageContentStyle = {
     ...contentStyle,
-    "height": "32px"
+    "height": imageHeight
   }
   const experienceStyle = {
     "grid-row": `${(row + 1)} / ${(row + 1)}`,

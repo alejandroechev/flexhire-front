@@ -1,6 +1,6 @@
 .timelineEntries {
   display: grid;
-  grid-template-columns: 2fr 2fr 1fr;
+  grid-template-columns: 2fr 3fr 2fr;
   grid-auto-rows: 1fr;
   grid-column-gap: 10px;
   grid-row-gap: 5px;
