@@ -1,6 +1,6 @@
 import "./Skill.css"
 
-export default function Skill({name, experience, row})
+export default function Skill({name, experience = null, row})
 {
   const contentStyle = {
     "grid-row": `${(row + 1)} / ${(row + 1)}`,
@@ -25,12 +25,19 @@ export default function Skill({name, experience, row})
     "Blockchain": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/2048px-Bitcoin.svg.png",
     "Ruby on Rails": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Ruby_on_Rails_logo.jpg?20070402090351",
     ".NET": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/.NET_Core_Logo.svg/1024px-.NET_Core_Logo.svg.png?20210328084203",
-    "Javascript": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Javascript_badge.svg/1200px-Javascript_badge.svg.png"
+    ".NET Core": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/.NET_Core_Logo.svg/1024px-.NET_Core_Logo.svg.png?20210328084203",
+    "Javascript": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Javascript_badge.svg/1200px-Javascript_badge.svg.png",
+    "Angular": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/1024px-Angular_full_color_logo.svg.png?20160527092314",
+    "spring framework": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Spring_Boot.svg/1024px-Spring_Boot.svg.png",
+    "Flask": "https://seeklogo.com/images/F/flask-logo-44C507ABB7-seeklogo.com.png",
+    "C/C++": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/The_C%2B%2B_logo.svg/2048px-The_C%2B%2B_logo.svg.png"
   }
   let skillContent = <label style={contentStyle}>{name}</label>;
   if (skillImageMap[name])
     skillContent = <img src={skillImageMap[name]} alt={name} style={imageContentStyle}></img>
-  const skillExperience = <label style={experienceStyle}>{Array(experience).fill("★").join("")}</label>
+  let skillExperience = null
+  if (experience !== null)
+    skillExperience = <label style={experienceStyle}>{Array(experience).fill("★").join("")}</label>
   return (
     <>
       {skillContent}
