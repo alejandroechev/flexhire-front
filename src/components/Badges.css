@@ -1,0 +1,24 @@
+.badges {
+  display: flex;
+}
+
+.badge {
+  border: 1px solid #000000;
+  border-radius: 999em;
+  padding: 3px 30px 3px 30px;
+  font-size: x-small;
+  margin-right: 20px
+}
+
+.badge-jobtype {
+  background-color: #023047;
+  color: white
+}
+
+.badge-experience {
+  background-color: #8ECAE6;
+}
+
+.badge-rate {
+  background-color: #FFB703;
+}
