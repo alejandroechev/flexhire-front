@@ -3,19 +3,19 @@ import "./Skill.css"
 export default function Skill({name, experience = null, row, imageHeight = "32px"})
 {
   const contentStyle = {
-    "grid-row": `${(row + 1)} / ${(row + 1)}`,
-    "grid-column": "1",
-    "font-size": "small"
+    "gridRow": `${(row + 1)} / ${(row + 1)}`,
+    "gridColumn": "1",
+    "fontSize": "small"
   }
   const imageContentStyle = {
     ...contentStyle,
     "height": imageHeight
   }
   const experienceStyle = {
-    "grid-row": `${(row + 1)} / ${(row + 1)}`,
-    "grid-column": "2",
-    "justify-self": "left",
-    "font-size": "small"
+    "gridRow": `${(row + 1)} / ${(row + 1)}`,
+    "gridColumn": "2",
+    "justifySelf": "left",
+    "fontSize": "small"
   }
   const skillImageMap = {
     "C#": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Logo_C_sharp.svg/1820px-Logo_C_sharp.svg.png",
