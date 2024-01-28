@@ -6,6 +6,8 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
+import 'react-tooltip/dist/react-tooltip.css'
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <RelayEnvironmentProvider environment={RelayEnvironment}>

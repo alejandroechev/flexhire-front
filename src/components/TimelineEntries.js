@@ -1,4 +1,5 @@
 import { Fragment } from "react"
+import { Tooltip } from 'react-tooltip'
 
 import "./TimelineEntries.css"
 
@@ -8,6 +9,7 @@ export default function TimelineEntries({timelineEntries})
 {
   const dateRangeColors = ["#8ECAE6", "#219EBC", "#023047", "#FFB703", "#FB8500"]
   const dateRangeFontColors = ["#000000", "#000000", "#FFFFFF", "#000000", "#000000"]
+  const educationIconSrc = "https://upload.wikimedia.org/wikipedia/commons/e/e8/Education%2C_Studying%2C_University%2C_Alumni_-_icon.png"
 
   const endYear = (te) => {
     if (te.dateEnd === null) return (new Date().getFullYear())
@@ -64,13 +66,30 @@ export default function TimelineEntries({timelineEntries})
           "height": "20px",
           "fontSize": "x-small"
         }
+        const tooltipStyle = {
+          "fontSize": "x-small",
+          "width": "400px"
+        }
 
         let educationBadge = null;
+        let tooltip = null;
         if (te.entryType === "education")
-          educationBadge = <img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Education%2C_Studying%2C_University%2C_Alumni_-_icon.png" alt="education" style={educationBadgeStyle}></img>
+        {
+          educationBadge = <img src={educationIconSrc} alt="education" style={educationBadgeStyle}></img>
+        }
+        else
+        {
+         tooltip = (
+          <Tooltip id={`te-${index}-tooltip`} multiline={true} style={tooltipStyle}>
+            <p >{te.description}</p>
+          </Tooltip>
+          )
+         }
+
         return(
           <Fragment key={index}>
-            <label style={titleAndPlaceStyle}>{titleAndPlace}</label>
+            <label data-tooltip-id={`te-${index}-tooltip`} style={titleAndPlaceStyle}>{titleAndPlace}</label>
+            {tooltip}
             <div style={dateRangeStyle}>
               <label>{`${teStartYear} - ${teEndYear}`}</label>
             </div>
