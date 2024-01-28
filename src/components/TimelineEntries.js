@@ -33,7 +33,7 @@ export default function TimelineEntries({timelineEntries})
           "fontSize": "small"
         }
         const dateRangeStyle = {
-          "gridRrow": `${(index + 1)}`,
+          "gridRow": `${(index + 1)}`,
           "gridColumn": `${startColumn} / ${endColumn}`,
           "fontSize": "x-small",
           "width": "100%",
@@ -58,6 +58,16 @@ export default function TimelineEntries({timelineEntries})
           "gridRow": `${(index + 1)}`,
           "gridColumn":  `${3 + deltaYears}`
         }
+        const educationBadgeStyle = {
+          "gridRow": `${(index + 1)}`,
+          "gridColumn":  `${3 + deltaYears}`,
+          "height": "20px",
+          "fontSize": "x-small"
+        }
+
+        let educationBadge = null;
+        if (te.entryType === "education")
+          educationBadge = <img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Education%2C_Studying%2C_University%2C_Alumni_-_icon.png" alt="education" style={educationBadgeStyle}></img>
         return(
           <Fragment key={index}>
             <label style={titleAndPlaceStyle}>{titleAndPlace}</label>
@@ -66,7 +76,8 @@ export default function TimelineEntries({timelineEntries})
             </div>
             <div style={skillsStyle}>
               {skills}
-              </div>
+            </div>
+            {educationBadge}
           </Fragment>
         )
       })}
