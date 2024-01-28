@@ -7,6 +7,7 @@ import Skill from "./Skill"
 export default function TimelineEntries({timelineEntries})
 {
   const dateRangeColors = ["#8ECAE6", "#219EBC", "#023047", "#FFB703", "#FB8500"]
+  const dateRangeFontColors = ["#000000", "#000000", "#FFFFFF", "#000000", "#000000"]
 
   const endYear = (te) => {
     if (te.dateEnd === null) return (new Date().getFullYear())
@@ -21,6 +22,10 @@ export default function TimelineEntries({timelineEntries})
   return (
     <div className="timelineEntries">
       {timelineEntries.map( (te, index) => {
+        const teStartYear = startYear(te)
+        const teEndYear = endYear(te)
+        const startColumn = 2 + teStartYear - minYear
+        const endColumn = 2 + teEndYear - minYear
         const titleAndPlace = `${te.title}, ${te.place}`
         const titleAndPlaceStyle = {
           "gridRow": `${(index + 1)}`,
@@ -29,12 +34,13 @@ export default function TimelineEntries({timelineEntries})
         }
         const dateRangeStyle = {
           "gridRrow": `${(index + 1)}`,
-          "gridColumn": `${2} / ${2 + deltaYears}`,
-          "fontSize": "small",
+          "gridColumn": `${startColumn} / ${endColumn}`,
+          "fontSize": "x-small",
           "width": "100%",
           "border": "1px solid #000000",
           "borderRadius": "999em",
           "backgroundColor": `${dateRangeColors[index % dateRangeColors.length]}`,
+          "color": `${dateRangeFontColors[index % dateRangeFontColors.length]}`,
           "margin": "7px 0"
         }
         const separatorStyle = {
@@ -55,7 +61,9 @@ export default function TimelineEntries({timelineEntries})
         return(
           <Fragment key={index}>
             <label style={titleAndPlaceStyle}>{titleAndPlace}</label>
-            <div style={dateRangeStyle}></div>
+            <div style={dateRangeStyle}>
+              <label>{`${teStartYear} - ${teEndYear}`}</label>
+            </div>
             <div style={skillsStyle}>
               {skills}
               </div>
