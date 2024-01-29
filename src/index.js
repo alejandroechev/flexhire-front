@@ -1,16 +1,19 @@
 import { RelayEnvironmentProvider } from "react-relay";
-import { RelayEnvironment } from "./RelayEnvironment";
+import createRelayEnvironment from "./RelayEnvironment";
 import React from "react";
 import ReactDOM from "react-dom/client";
+
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 import 'react-tooltip/dist/react-tooltip.css'
 
+const urlParams = new URLSearchParams(window.location.search);
+const apiKey = urlParams.get('apiKey');
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <RelayEnvironmentProvider environment={RelayEnvironment}>
+  <RelayEnvironmentProvider environment={createRelayEnvironment(apiKey)}>
     <React.StrictMode>
       <App />
     </React.StrictMode>

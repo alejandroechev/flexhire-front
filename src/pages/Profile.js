@@ -6,8 +6,10 @@ import TimelineEntries from "../components/TimelineEntries";
 
 import "./Profile.css"
 
-export default function Profile()
+export default function Profile(props)
 {
+  const searchParams = new URLSearchParams(props?.location?.search);
+  const apiKey = searchParams.get('apiKey') || "14nx3gpc76jvoz0q"
   const query = graphql`
     query Profile_UserName_Query {
       currentUser {
@@ -57,7 +59,7 @@ export default function Profile()
   `;
   const data = useLazyLoadQuery(
     query,
-    {},
+    {apiKey: apiKey},
   );
 
   return (
