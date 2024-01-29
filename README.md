@@ -21,4 +21,10 @@ To run locally in development server, run the following command:
 npm start
 `
 
-Important: You need to disable CORS checking in the browser to use the development server.
+**Important:** You need to disable CORS checking in the browser to use the development server.
+
+To access the webpage you need to provide an API key as query parameter:
+
+`
+http://localhost:3000/?apiKey=an-api-key
+`
