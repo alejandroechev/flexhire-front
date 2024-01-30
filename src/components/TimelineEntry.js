@@ -14,12 +14,32 @@ export default function TimelineEntry({entry, index,  minYear, deltaYears})
   const teEndYear = endYear(entry)
   const startColumn = 2 + teStartYear - minYear
   const endColumn = 2 + teEndYear - minYear
+
   const titleAndPlace = `${entry.title}, ${entry.place}`
   const titleAndPlaceStyle = {
     "gridRow": `${(index + 1)}`,
     "gridColumn": "1",
     "fontSize": "small"
   }
+  const tooltipStyle = {
+    "fontSize": "x-small",
+    "width": "400px"
+  }
+
+  let tooltip = null;
+  if (entry.entryType !== "education")
+  {
+    tooltip = (
+    <Tooltip id={`te-${index}-tooltip`} multiline={true} style={tooltipStyle}>
+      <p >{entry.description}</p>
+    </Tooltip>
+    )
+  }
+  const titleAndPlaceComponent = <>
+      <label data-tooltip-id={`te-${index}-tooltip`} style={titleAndPlaceStyle}>{titleAndPlace}</label>
+      {tooltip}
+    </>
+
   const dateRangeStyle = {
     "gridRow": `${(index + 1)}`,
     "gridColumn": `${startColumn} / ${endColumn}`,
@@ -32,9 +52,15 @@ export default function TimelineEntry({entry, index,  minYear, deltaYears})
     "margin": "7px 0",
     "textAlign": "center"
   }
+
   const separatorStyle = {
     "marginRight": "5px"
   }
+
+  const dateRangeComponent = <div style={dateRangeStyle}>
+    <label>{`${teStartYear} - ${teEndYear}`}</label>
+  </div>
+
   const skills = entry.skills.map((s, index) => {
     return(
       <Fragment key={index}>
@@ -53,37 +79,23 @@ export default function TimelineEntry({entry, index,  minYear, deltaYears})
     "height": "20px",
     "fontSize": "x-small"
   }
-  const tooltipStyle = {
-    "fontSize": "x-small",
-    "width": "400px"
-  }
 
   let educationBadge = null;
-  let tooltip = null;
   if (entry.entryType === "education")
-  {
     educationBadge = <img src={educationIconSrc} alt="education" style={educationBadgeStyle}></img>
-  }
-  else
-  {
-    tooltip = (
-    <Tooltip id={`te-${index}-tooltip`} multiline={true} style={tooltipStyle}>
-      <p >{entry.description}</p>
-    </Tooltip>
-    )
-  }
 
-  return(
-    <Fragment key={index}>
-      <label data-tooltip-id={`te-${index}-tooltip`} style={titleAndPlaceStyle}>{titleAndPlace}</label>
-      {tooltip}
-      <div style={dateRangeStyle}>
-        <label>{`${teStartYear} - ${teEndYear}`}</label>
-      </div>
-      <div style={skillsStyle}>
+  const skillsComponent = <>
+    <div style={skillsStyle}>
         {skills}
       </div>
       {educationBadge}
+  </>
+
+  return(
+    <Fragment key={index}>
+      {titleAndPlaceComponent}
+      {dateRangeComponent}
+      {skillsComponent}
     </Fragment>
   )
 }
