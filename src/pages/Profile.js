@@ -62,10 +62,19 @@ export default function Profile(props)
     {apiKey: apiKey},
   );
 
+  const profileUI = <>
+    <Header {...data?.currentUser} />
+    <TimelineEntries timelineEntries={data?.currentUser?.timelineEntries}/>
+  </>
+
+  const noApiKeyUI = <>
+    <p>API Key not provided or invalid</p>
+    <p>Correct usage: pass API Key as query parameter "apiKey"</p>
+  </>
+
   return (
     <div className="profile">
-      <Header {...data.currentUser} />
-      <TimelineEntries timelineEntries={data.currentUser.timelineEntries}/>
+     {data.currentUser !== null ? profileUI : noApiKeyUI}
     </div>
   );
 }
