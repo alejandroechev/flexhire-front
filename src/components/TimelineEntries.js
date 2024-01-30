@@ -43,7 +43,8 @@ export default function TimelineEntries({timelineEntries})
           "borderRadius": "999em",
           "backgroundColor": `${dateRangeColors[index % dateRangeColors.length]}`,
           "color": `${dateRangeFontColors[index % dateRangeFontColors.length]}`,
-          "margin": "7px 0"
+          "margin": "7px 0",
+          "textAlign": "center"
         }
         const separatorStyle = {
           "marginRight": "5px"
