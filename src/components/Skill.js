@@ -1,5 +1,3 @@
-import "./Skill.css"
-
 export default function Skill({name, experience = null, row, imageHeight = "32px"})
 {
   const contentStyle = {
