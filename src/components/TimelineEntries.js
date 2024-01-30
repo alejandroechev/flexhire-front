@@ -1,5 +1,6 @@
 import { Fragment } from "react"
 import { Tooltip } from 'react-tooltip'
+import { useMediaQuery } from 'react-responsive'
 
 import "./TimelineEntries.css"
 
@@ -7,6 +8,8 @@ import Skill from "./Skill"
 
 export default function TimelineEntries({timelineEntries})
 {
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
+
   const dateRangeColors = ["#8ECAE6", "#219EBC", "#023047", "#FFB703", "#FB8500"]
   const dateRangeFontColors = ["#000000", "#000000", "#FFFFFF", "#000000", "#000000"]
   const educationIconSrc = "https://upload.wikimedia.org/wikipedia/commons/e/e8/Education%2C_Studying%2C_University%2C_Alumni_-_icon.png"
@@ -22,7 +25,7 @@ export default function TimelineEntries({timelineEntries})
   const deltaYears = maxYear - minYear
 
   return (
-    <div className="timelineEntries">
+    <div className={ isTabletOrMobile ? "timelineEntries-mobile" : "timelineEntries"}>
       {timelineEntries.map( (te, index) => {
         const teStartYear = startYear(te)
         const teEndYear = endYear(te)
